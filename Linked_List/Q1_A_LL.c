@@ -6,6 +6,7 @@ Purpose: Implementing the required functions for Question 1 */
 
 //////////////////////////////////////////////////////////////////////////////////
 
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -71,7 +72,7 @@ int main()
 		case 3:
 			printf("The resulting sorted linked list is: ");
 			printList(&ll);
-			removeAllItems(&ll);
+			// removeAllItems(&ll);
 			break;
 		case 0:
 			removeAllItems(&ll);
@@ -90,7 +91,27 @@ int main()
 
 int insertSortedLL(LinkedList *ll, int item)
 {
-	/* add your code here */
+	if (ll -> head == NULL) {
+		insertNode(ll, 0, item);
+		return 0;
+	}
+
+	ListNode *find_node = NULL;
+	int index = ll->size;
+	for (int i = 0; i < ll -> size; i++) {
+		find_node = findNode(ll, i);
+		if (find_node != NULL && find_node -> item == item) {
+			return -1;
+		}
+		if (find_node != NULL && find_node -> item > item) {
+			index = i;
+			break;
+		}
+	}
+
+	insertNode(ll, index, item);
+
+	return index;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
