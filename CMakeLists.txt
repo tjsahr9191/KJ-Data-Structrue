@@ -3,5 +3,6 @@ project(Data_Structures C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_executable(Data_Structures main.c
-        Linked_List/Q1_A_LL.c)
+add_executable(Data_Structures
+        Linked_List/Q1_A_LL.c
+        Linked_List/Q2_A_LL.c)

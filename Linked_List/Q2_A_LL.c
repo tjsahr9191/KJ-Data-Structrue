@@ -34,7 +34,7 @@ void removeAllItems(LinkedList *ll);
 ListNode *findNode(LinkedList *ll, int index);
 int insertNode(LinkedList *ll, int index, int value);
 int removeNode(LinkedList *ll, int index);
-
+int max(int a, int b);
 
 //////////////////////////// main() //////////////////////////////////////////////
 
@@ -101,9 +101,33 @@ int main()
 
 //////////////////////////////////////////////////////////////////////////////////
 
+int max(int a, int b) {
+	if (a >= b) return a;
+	return b;
+}
+
 void alternateMergeLinkedList(LinkedList *ll1, LinkedList *ll2)
 {
-    /* add your code here */
+    int count = max(ll1 -> size, ll2 -> size);
+	int index_for_add = 1;
+	while (--count > 0) {
+		ListNode *find_node = findNode(ll2, 0);
+		if (find_node == NULL)
+			return;
+
+		insertNode(ll1, index_for_add, find_node -> item);
+		removeNode(ll2, 0);
+		index_for_add += 2;
+	}
+
+	if (ll2 -> size > 0) {
+		for (int i = 0; i < ll2->size; i++) {
+			ListNode *find_node = findNode(ll2, i);
+			if (find_node != NULL)
+				insertNode(ll1, ll1->size, find_node->item);
+		}
+	}
+
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
