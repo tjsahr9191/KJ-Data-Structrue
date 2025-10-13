@@ -23,4 +23,5 @@ add_executable(Data_Structures
         Binary_Tree/Q3_E_BT.c
         Binary_Tree/Q4_E_BT.c
         Binary_Tree/Q5_E_BT.c
+        Binary_Tree/Q6_E_BT.c
 )
