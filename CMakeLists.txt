@@ -16,4 +16,5 @@ add_executable(Data_Structures
         Stack_and_Queue/Q3_C_SQ.c
         Stack_and_Queue/Q4_C_SQ.c
         Stack_and_Queue/Q5_C_SQ.c
+        Stack_and_Queue/Q6_C_SQ.c
 )
