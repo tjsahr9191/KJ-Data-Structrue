@@ -113,12 +113,34 @@ int main()
 
 void createStackFromLinkedList(LinkedList *ll, Stack *s)
 {
-    /* add your code here */
+	removeAllItemsFromStack(s);
+
+	ListNode *cur = ll->head;
+	while (cur != NULL) {
+		push(s, cur->item);
+		cur = cur->next;
+	}
 }
 
 void removeEvenValues(Stack *s)
 {
-	/* add your code here */
+	Stack temp;          // 올바른 방법: 스택 '객체'를 선언
+	temp.ll.head = NULL; // 스택 초기화
+	temp.ll.size = 0;
+
+	while (!isEmptyStack(s)) {
+		int poped = pop(s);
+		if (poped == MIN_INT)
+			continue;
+
+		if (poped % 2 == 1) {
+			push(&temp, poped);
+		}
+	}
+	while (!isEmptyStack(&temp)) {
+		int t_pop = pop(&temp);
+		push(s, t_pop);
+	}
 }
 
 //////////////////////////////////////////////////////////////////////////////////
