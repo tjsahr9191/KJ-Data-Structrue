@@ -20,4 +20,5 @@ add_executable(Data_Structures
         Stack_and_Queue/Q7_C_SQ.c
         Binary_Tree/Q1_E_BT.c
         Binary_Tree/Q2_E_BT.c
+        Binary_Tree/Q3_E_BT.c
 )
