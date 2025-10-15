@@ -33,6 +33,7 @@ add_executable(Q8_E_BT Binary_Tree/Q8_E_BT.c)
 
 # Binary Search Tree Problems
 add_executable(Q1_F_BST Binary_Search_Tree/Q1_F_BST.c)
-add_executable(Q1_F_BST Binary_Search_Tree/Q2_F_BST.c)
-add_executable(Q1_F_BST Binary_Search_Tree/Q3_F_BST.c)
-add_executable(Q1_F_BST Binary_Search_Tree/Q4_F_BST.c)
+add_executable(Q2_F_BST Binary_Search_Tree/Q2_F_BST.c)
+add_executable(Q3_F_BST Binary_Search_Tree/Q3_F_BST.c)
+add_executable(Q4_F_BST Binary_Search_Tree/Q4_F_BST.c)
+add_executable(Q5_F_BST Binary_Search_Tree/Q5_F_BST.c)

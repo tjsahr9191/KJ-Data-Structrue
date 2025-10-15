@@ -40,6 +40,7 @@ BSTNode *peek(Stack *s);
 int isEmpty(Stack *s);
 void removeAll(BSTNode **node);
 BSTNode* removeNodeFromTree(BSTNode *root, int value);
+BSTNode* find_node(BSTNode *root, int value);
 
 ///////////////////////////// main() /////////////////////////////////////////////
 
@@ -89,16 +90,96 @@ int main()
 
 //////////////////////////////////////////////////////////////////////////////////
 
-void postOrderIterativeS2(BSTNode *root)
+void postOrderIterativeS2(BSTNode *root) {
+
+	if (root == NULL) return;
+
+	Stack stack1;
+	stack1.top = NULL;
+
+	Stack stack2;
+	stack2.top = NULL;
+
+	push(&stack1, root);
+	while (!isEmpty(&stack1)) {
+		if (peek(&stack1)->left == NULL && peek(&stack1)->right == NULL) {
+			printf("%d ", pop(&stack1)->item);
+			continue;
+		}
+		if (peek(&stack1) == peek(&stack2)) {
+			printf("%d ", pop(&stack1)->item);
+			pop(&stack2);
+			continue;
+		}
+
+		push(&stack2, peek(&stack1));
+
+		if (peek(&stack2)->right != NULL)
+			push(&stack1, peek(&stack2)->right);
+		if (peek(&stack2)->left != NULL)
+			push(&stack1, peek(&stack2)->left);
+	}
+}
+BSTNode* findMinValueNode(BSTNode* node)
 {
-	 /* add your code here */
+	BSTNode* current = node;
+
+	while (current && current->left != NULL) {
+		current = current->left;
+	}
+
+	return current;
 }
 
-/* Given a binary search tree and a key, this function
-   deletes the key and returns the new root. Make recursive function. */
 BSTNode* removeNodeFromTree(BSTNode *root, int value)
 {
-	/* add your code here */
+	if (root == NULL) return root;
+
+	if (value < root->item) {
+		root->left = removeNodeFromTree(root->left, value);
+	}
+	else if (value > root->item) {
+		root->right = removeNodeFromTree(root->right, value);
+	}
+	else {
+		if (root->left == NULL) {
+			BSTNode *temp = root->right;
+			free(root);
+			return temp;
+		}
+		if (root->right == NULL) {
+			BSTNode *temp = root->left;
+			free(root);
+			return temp;
+		}
+
+		BSTNode* temp = findMinValueNode(root->right);
+
+		root->item = temp->item;
+
+		root->right = removeNodeFromTree(root->right, temp->item);
+	}
+
+	return root;
+}
+
+BSTNode* find_node(BSTNode *root, int value) {
+	if (root == NULL) return NULL;
+	if (root->item == value) return root;
+
+	BSTNode *left = find_node(root->left, value);
+	if (left != NULL) return left;
+
+	BSTNode *right = find_node(root->left, value);
+	if (right != NULL) return right;
+
+	return NULL;
+}
+
+BSTNode* removeNodeFromTree(BSTNode *root, int value) {
+
+
+
 }
 ///////////////////////////////////////////////////////////////////////////////
 

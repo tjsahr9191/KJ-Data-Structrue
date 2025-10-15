@@ -100,22 +100,17 @@ void postOrderIterativeS1(BSTNode *root)
 	BSTNode *lastVisited = NULL;
 
 	while (current != NULL || !isEmpty(&stack)) {
-		// 1. 왼쪽 끝까지 내려가면서 스택에 push
 		if (current != NULL) {
 			push(&stack, current);
 			current = current->left;
 		} else {
-			// 스택의 맨 위 노드를 확인
 			BSTNode *topNode = peek(&stack);
 
-			// 2. 오른쪽 자식이 있고, 아직 방문하지 않았다면 오른쪽으로 이동
 			if (topNode->right != NULL && lastVisited != topNode->right) {
 				current = topNode->right;
-			// 3. 오른쪽까지 방문이 끝났다면, 현재 노드를 방문(출력)
 			} else {
 				printf("%d ", topNode->item);
-				lastVisited = pop(&stack); // pop하여 lastVisited 업데이트
-				// current는 NULL로 유지하여 다음 루프에서 스택의 부모를 확인
+				lastVisited = pop(&stack);
 			}
 		}
 	}
